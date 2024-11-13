@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. Hora y Fecha</title>
+    <style>
+      body{
+           display:flex;
+           flex-direction: column;
+           align-items: center;
+      }
+      input{
+            margin: 5em;
+            padding: 1em;
+            font-size: 1.2em;
+      }
+    </style>
+</head>
+<body>
+     <input type="button" id="nuevaVentana" value="Obtener fecha actual">
+
+    <script>
+          function crearVentana(){
+               //creamos una ventana y usamos los métodos del objeto padre "window"
+               var nuevaVentana = window.open("", "Fecha actual", "height=600,width=800");
+               
+               //declaramos un objeto nuevo de tipo "Date" (fecha)
+               var fecha = new Date();
+
+               //capturamos cada uno de los datos de la fecha con los métodos del objeto "Date"
+               var hora = fecha.getHours();
+               var minutos = fecha.getMinutes();
+               var dia = fecha.getDate();
+               var mes = fecha.toLocaleString('es-ES', {month: 'long'});
+               var año = fecha.getFullYear();
+
+               //Escribimos en la ventana emergente el texto compuesto con los datos almacenados anteriormente
+               nuevaVentana.document.write('Son las ' + hora + ':' + minutos + ' del ' + dia + ' de ' + mes + ' de ' + año);
+                     //write alternativo: (`Son las ${hora}:${minutos} del ${dia} de ${mes} de ${año}`)  OJO AL TIPO DE COMILLAS ``
+
+               /*MÉTODO ALTERNATIVO PARA OBTENER EL MES
+               const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+               var mes = month[fecha.getMonth()]; de ésta manera nos dará el número del mes entre 0 y 11 */
+          }
+
+          //con el método "on click" podemos hacer que al pulsar un botón (nuevaVentana) se ejecute una función (crearVentana)
+          document.getElementById("nuevaVentana").onclick=crearVentana;
+    </script>
+</body>
+</html>
